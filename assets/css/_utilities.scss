@@ -1,0 +1,159 @@
+@layer base {
+  .grid-standard {
+    @apply grid grid-cols-12;
+    --min-viewport: 375;
+    --max-viewport: 767;
+
+    // Calc grid padding-x
+    --min-spacing: 16;
+    --max-spacing: 24;
+    --min-spacing-px: calc(var(--min-spacing) * 1px);
+    --max-spacing-px: calc(var(--max-spacing) * 1px);
+    --slope-spacing: calc(
+      (var(--max-spacing) - var(--min-spacing)) /
+        (var(--max-viewport) - var(--min-viewport))
+    );
+    --intersection-spacing-value: calc(
+      ((-1 * var(--min-viewport)) * var(--slope-spacing)) + var(--min-spacing)
+    );
+    --vw-spacing-value: calc(
+      var(--intersection-spacing-value) * 1px + (var(--slope-spacing) * 100vw)
+    );
+    padding-inline: clamp(
+      var(--min-spacing-px),
+      var(--vw-spacing-value),
+      var(--max-spacing-px)
+    );
+
+    // Calc grid gap
+    --min-gap: 8;
+    --max-gap: 16;
+    --min-gap-px: calc(var(--min-gap) * 1px);
+    --max-gap-px: calc(var(--max-gap) * 1px);
+    --slope-gap: calc(
+      (var(--max-gap) - var(--min-gap)) /
+        (var(--max-viewport) - var(--min-viewport))
+    );
+    --intersection-value: calc(
+      ((-1 * var(--min-viewport)) * var(--slope-gap)) + var(--min-gap)
+    );
+    --vw-value: calc(
+      var(--intersection-value) * 1px + (var(--slope-gap) * 100vw)
+    );
+    gap: clamp(var(--min-gap-px), var(--vw-value), var(--max-gap-px));
+  }
+
+  @screen md {
+    .grid-standard {
+      --min-viewport: 768;
+      --max-viewport: 1279;
+      --min-spacing: 24;
+      --max-spacing: 48;
+      --min-gap: 16;
+      --max-gap: 16;
+    }
+  }
+
+  @screen lg {
+    .grid-standard {
+      --min-viewport: 1280;
+      --max-viewport: 1920;
+      --min-spacing: 48;
+      --max-spacing: 64;
+      --min-gap: 16;
+      --max-gap: 24;
+    }
+  }
+}
+
+.positive-margin {
+  --min-viewport: 375;
+  --max-viewport: 767;
+
+  // Calc grid padding-x
+  --min-spacing: 16;
+  --max-spacing: 24;
+  --min-spacing-px: calc(var(--min-spacing) * 1px);
+  --max-spacing-px: calc(var(--max-spacing) * 1px);
+  --slope-spacing: calc(
+    (var(--max-spacing) - var(--min-spacing)) /
+      (var(--max-viewport) - var(--min-viewport))
+  );
+  --intersection-spacing-value: calc(
+    ((-1 * var(--min-viewport)) * var(--slope-spacing)) + var(--min-spacing)
+  );
+  --vw-spacing-value: calc(
+    var(--intersection-spacing-value) * 1px + (var(--slope-spacing) * 100vw)
+  );
+  margin-inline: clamp(
+    var(--min-spacing-px),
+    var(--vw-spacing-value),
+    var(--max-spacing-px)
+  );
+}
+
+@screen md {
+  .positive-margin {
+    --min-viewport: 768;
+    --max-viewport: 1279;
+    --min-spacing: 24;
+    --max-spacing: 48;
+  }
+}
+
+@screen lg {
+  .positive-margin {
+    --min-viewport: 1280;
+    --max-viewport: 1920;
+    --min-spacing: 48;
+    --max-spacing: 64;
+  }
+}
+
+.negative-spacing {
+  --min-viewport: 375;
+  --max-viewport: 767;
+
+  // Calc grid padding-x
+  --min-spacing: -16;
+  --max-spacing: -24;
+  --min-spacing-px: calc(var(--min-spacing) * 1px);
+  --max-spacing-px: calc(var(--max-spacing) * 1px);
+  --slope-spacing: calc(
+    (var(--max-spacing) - var(--min-spacing)) /
+      (var(--max-viewport) - var(--min-viewport))
+  );
+  --intersection-spacing-value: calc(
+    ((-1 * var(--min-viewport)) * var(--slope-spacing)) + var(--min-spacing)
+  );
+  --vw-spacing-value: calc(
+    var(--intersection-spacing-value) * 1px + (var(--slope-spacing) * 100vw)
+  );
+  padding-inline: clamp(
+    var(--min-spacing-px),
+    var(--vw-spacing-value),
+    var(--max-spacing-px)
+  );
+}
+
+@screen md {
+  .negative-spacing {
+    --min-viewport: 768;
+    --max-viewport: 1279;
+    --min-spacing: -24;
+    --max-spacing: -48;
+  }
+}
+
+@screen lg {
+  .negative-spacing {
+    --min-viewport: 1280;
+    --max-viewport: 1920;
+    --min-spacing: -48;
+    --max-spacing: -64;
+  }
+}
+
+.grid-container {
+  @apply grid-standard negative-spacing;
+}

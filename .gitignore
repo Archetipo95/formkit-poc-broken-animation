@@ -1,0 +1,29 @@
+node_modules
+*.log
+.nuxt
+nuxt.d.ts
+.output
+.env
+!packages/**/.env
+framework
+dist
+.DS_Store
+
+# Yarn
+.yarn/cache
+.yarn/*state*
+
+# Local History
+.history
+
+# Storybook build
+storybook-static/
+
+components.d.ts
+
+# Local Netlify folder
+.netlify
+
+.unlighthouse
+
+packages/*/auto-imports.d.ts
