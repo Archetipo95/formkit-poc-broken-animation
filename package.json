@@ -1,5 +1,4 @@
 {
-  "name": "design-system",
   "type": "module",
   "main": "./nuxt.config.ts",
   "license": "ISC",
@@ -8,6 +7,7 @@
     "clean-nuxt": "rm -rf .nuxt && rm -rf ./packages/*/.nuxt",
     "clean-project": "pnpm clean-node && pnpm clean-nuxt && rm -rf ./packages/*/auto-imports.d.ts && rm -rf ./packages/*/components.d.ts",
     "dev": "nuxi dev",
+    "build": "nuxt build",
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck"
   },

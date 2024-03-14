@@ -1,5 +1,10 @@
 <script lang="ts" setup>
 const { openDialog } = useDialog()
+
+//openDialog('form2')
+onMounted(() => {
+  openDialog('form1')
+})
 </script>
 
 <template>
