@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { openDialog } = useDialog()
 
-//openDialog('form2')
+//openDialog('form3')
 onMounted(() => {
   openDialog('form1')
 })
@@ -17,16 +17,8 @@ onMounted(() => {
         <span class="text-red-600">(broken animation)</span>
       </button>
 
-      <button @click="openDialog('form2')">
-        open sidebar with floating-label
-      </button>
-
       <button @click="openDialog('form3')">
         open sidebar default (without floating-label)
-      </button>
-
-      <button @click="openDialog('form4')">
-        open sidebar :floating-label="false"
       </button>
 
       <button @click="openDialog('normal')">
@@ -40,21 +32,9 @@ onMounted(() => {
       </template>
     </Sidebar>
 
-    <Sidebar id="form2">
-      <template #body>
-        <FormKit type="text" floating-label label="Label" />
-      </template>
-    </Sidebar>
-
     <Sidebar id="form3">
       <template #body>
         <FormKit type="text" label="Label" />
-      </template>
-    </Sidebar>
-
-    <Sidebar id="form4">
-      <template #body>
-        <FormKit type="text" :floating-label="false" label="Label" />
       </template>
     </Sidebar>
 

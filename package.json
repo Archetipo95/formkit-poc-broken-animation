@@ -1,7 +1,5 @@
 {
   "type": "module",
-  "main": "./nuxt.config.ts",
-  "license": "ISC",
   "scripts": {
     "clean-node": "rm -rf node_modules && rm -rf ./packages/*/node_modules",
     "clean-nuxt": "rm -rf .nuxt && rm -rf ./packages/*/.nuxt",
@@ -11,7 +9,6 @@
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck"
   },
-  "packageManager": "pnpm@8.14.2",
   "devDependencies": {
     "@formkit/addons": "1.6.0",
     "@formkit/icons": "1.6.0",
@@ -20,7 +17,7 @@
     "@formkit/themes": "1.6.0",
     "@nuxt/eslint-config": "0.2.0",
     "@nuxtjs/tailwindcss": "6.11.4",
-    "@types/node": "20.11.27",
+    "@types/node": "20.11.28",
     "@vueuse/components": "10.9.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-nuxt": "4.0.0",
