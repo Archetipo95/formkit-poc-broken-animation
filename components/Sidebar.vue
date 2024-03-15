@@ -1,30 +1,15 @@
 <script setup lang="ts">
 import type { SidebarProps } from './Sidebar.props'
 
-const { id, disableClickToCloseOutside } = defineProps<SidebarProps>()
+const { id } = defineProps<SidebarProps>()
 
 const { statusDialog, closeDialog } = useDialog(id)
-
-const closeSideSlide = () => {
-  closeDialog()
-}
-
-// close dialog when clicking outside
-const handleClickOnAlphaLayer = () => {
-  if (disableClickToCloseOutside) return
-  closeSideSlide()
-}
 </script>
 
 <template>
   <Transition>
     <div v-show="statusDialog">
-      <div
-        class="alpha_layer fixed inset-0 z-[999]"
-        :class="{
-          'bg-white/80': !isAlphaLayerTransparent,
-        }"
-      ></div>
+      <div class="alpha_layer fixed inset-0 z-[999] bg-white/80" />
 
       <Transition
         appear
@@ -38,7 +23,7 @@ const handleClickOnAlphaLayer = () => {
         <div
           v-show="statusDialog"
           class="fixed inset-0 z-[999] grid grid-cols-12"
-          @click.stop="handleClickOnAlphaLayer"
+          @click.stop="closeDialog()"
         >
           <div class="col-span-full !col-end-[-1] md:col-span-6 lg:col-span-4">
             <div
