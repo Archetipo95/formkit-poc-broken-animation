@@ -1,42 +1,42 @@
 export const useDialog = (id: string = '') => {
-  const _Dialogs = useState('useDialog__dialogs', () => ({}) as any)
+  const dialogs = useState(
+    'useDialog__dialogs',
+    () => ({}) as Record<string, boolean>
+  )
 
-  const dialogId: Ref<string> = id ? ref(id) : ref('')
-
-  const statusDialog =
-    computed<boolean>(
-      () => _Dialogs.value[unref(dialogId) as keyof typeof _Dialogs]
-    ) ?? false
+  const dialogID = ref(id)
 
   const initDialog = () => {
-    _Dialogs.value[unref(dialogId)] =
-      unref(dialogId) in _Dialogs.value
-        ? _Dialogs.value[unref(dialogId)]
-        : false
+    dialogs.value[dialogID.value] =
+      dialogID.value in dialogs.value ? dialogs.value[dialogID.value] : false
   }
 
-  const switchDialogState = (id: string, state: boolean) => {
-    if (id in _Dialogs.value) {
-      _Dialogs.value[id] = state
+  const isDialogOpen = computed(() => {
+    return dialogs.value[dialogID.value]
+  })
+
+  const setDialog = (id: string, state: boolean) => {
+    if (id in dialogs.value) {
+      dialogs.value[id] = state
     }
   }
 
   const openDialog = (id?: string) => {
-    const dialogToOpen = typeof id === 'string' ? id : unref(dialogId)
-    Object.keys(_Dialogs.value).includes(dialogToOpen) &&
-      switchDialogState(dialogToOpen, true)
+    const dialogToOpen = id ? id : unref(dialogID)
+    Object.keys(dialogs.value).includes(dialogToOpen) &&
+      setDialog(dialogToOpen, true)
   }
 
   const closeDialog = (id?: string) => {
-    const dialogToOpen = typeof id === 'string' ? id : unref(dialogId)
-    Object.keys(_Dialogs.value).includes(dialogToOpen) &&
-      switchDialogState(dialogToOpen, false)
+    const dialogToOpen = id ? id : unref(dialogID)
+    Object.keys(dialogs.value).includes(dialogToOpen) &&
+      setDialog(dialogToOpen, false)
   }
 
   initDialog()
 
   return {
-    statusDialog,
+    isDialogOpen,
     openDialog,
     closeDialog,
   }

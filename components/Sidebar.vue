@@ -3,12 +3,12 @@ import type { SidebarProps } from './Sidebar.props'
 
 const { id } = defineProps<SidebarProps>()
 
-const { statusDialog, closeDialog } = useDialog(id)
+const { isDialogOpen, closeDialog } = useDialog(id)
 </script>
 
 <template>
   <Transition>
-    <div v-show="statusDialog">
+    <div v-show="isDialogOpen">
       <div class="alpha_layer fixed inset-0 z-[999] bg-white/80" />
 
       <Transition
@@ -21,7 +21,7 @@ const { statusDialog, closeDialog } = useDialog(id)
         leave-to-class="translate-x-full"
       >
         <div
-          v-show="statusDialog"
+          v-show="isDialogOpen"
           class="fixed inset-0 z-[999] grid grid-cols-12"
           @click.stop="closeDialog()"
         >
